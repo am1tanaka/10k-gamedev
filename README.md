@@ -10,7 +10,7 @@ Lubuntuのインストールが済んで起動したら、以下を実行しま�
 
 ```
 cd ~
-wget -O install-gdev.sh https://github.com/am1tanaka/10k-gamedev/blob/master/install-gdev.sh
+wget -O install-gdev.sh https://raw.githubusercontent.com/am1tanaka/10k-gamedev/master/install-gdev.sh
 chmod 700 install-gdev.sh
 ```
 
