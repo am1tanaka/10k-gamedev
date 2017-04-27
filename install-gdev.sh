@@ -84,7 +84,7 @@ npm install phaser-ce
 echo -Install Phaser done-
 
 #__MAKE_NEW_PHASER_PROJECT_FILE__
-wget -O ./create-phaser.sh https://github.com/am1tanaka/10k-gamedev/blob/master/create-phaser.sh
+wget -O ./create-phaser.sh https://raw.githubusercontent.com/am1tanaka/10k-gamedev/master/create-phaser.sh
 chmod 700 ~/phaser/create-phaser.sh
 
 
