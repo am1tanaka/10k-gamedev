@@ -81,6 +81,9 @@ mkdir phaser
 cd phaser
 npm install phaser-ce
 
+#__Phaser_Examples__
+git clone https://github.com/photonstorm/phaser-examples.git
+
 echo -Install Phaser done-
 
 #__MAKE_NEW_PHASER_PROJECT_FILE__
