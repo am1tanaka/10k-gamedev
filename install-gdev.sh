@@ -77,12 +77,14 @@ echo -Install Grunt done-
 #__Phaser__
 echo -Install Phaser-
 
-mkdir phaser
+git clone https://github.com/photonstorm/phaser-ce.git phaser
 cd phaser
-npm install phaser-ce
+npm i
 
 #__Phaser_Examples__
 git clone https://github.com/photonstorm/phaser-examples.git
+cd phaser-examples
+npm i
 
 echo -Install Phaser done-
 
