@@ -79,7 +79,7 @@ echo -Install Phaser-
 
 mkdir phaser
 cd phaser
-git clone https://github.com/photonstorm/phaser-ce.git
+git clone https://github.com/photonstorm/phaser-ce.git phaser
 
 #__Phaser_Examples__
 git clone https://github.com/photonstorm/phaser-examples.git
