@@ -5,7 +5,7 @@ cd ~/phaser
 read -p "プロジェクト名を入力してください:" proname
 
 # copy base folder
-cp -r node_modules/phaser-ce $proname
+cp -r phaser-ce $proname
 
 # change new project folder
 cd $proname
