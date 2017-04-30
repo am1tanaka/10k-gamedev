@@ -10,12 +10,6 @@ cp -r phaser-boilderplate $proname
 # change new project folder
 cd $proname
 
-# npm install
-npm install
-
-# install phaser support
-npm install tern-phaser
-
 echo '{
   "ecmaVersion": 6,
   "libs": [
