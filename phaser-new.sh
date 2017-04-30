@@ -5,7 +5,7 @@ cd ~/phaser
 read -p "プロジェクト名を入力してください:" proname
 
 # copy base folder
-cp -r phaser $proname
+cp -r phaser-boilderplate $proname
 
 # change new project folder
 cd $proname
