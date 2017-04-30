@@ -89,14 +89,14 @@ git clone https://github.com/goldfire/phaser-boilerplate.git
 cd phaser-boilerplate
 npm i
 npm i tern-phaser
-
 echo -Install Phaser done-
 
 #__MAKE_NEW_PHASER_PROJECT_FILE__
+cd ~/phaser
 wget https://raw.githubusercontent.com/am1tanaka/10k-gamedev/master/phaser-new.sh
 chmod 700 phaser-new.sh
 
-cd ..
+cd ~
 
 #__FINISH__
 sudo apt autoremove -y
