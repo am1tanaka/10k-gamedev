@@ -83,14 +83,19 @@ git clone https://github.com/photonstorm/phaser-ce.git phaser
 
 #__Phaser_Examples__
 git clone https://github.com/photonstorm/phaser-examples.git
-cd phaser-examples
+
+#__Phaser_Boilerplate__
+git clone https://github.com/goldfire/phaser-boilerplate.git
+cd phaser-boilerplate
+npm i tern-phaser
 
 echo -Install Phaser done-
 
 #__MAKE_NEW_PHASER_PROJECT_FILE__
-wget -O ./create-phaser.sh https://raw.githubusercontent.com/am1tanaka/10k-gamedev/master/create-phaser.sh
-chmod 700 ~/phaser/create-phaser.sh
+wget https://raw.githubusercontent.com/am1tanaka/10k-gamedev/master/phaser-new.sh
+chmod 700 phaser-new.sh
 
+cd ..
 
 #__FINISH__
 sudo apt autoremove -y
