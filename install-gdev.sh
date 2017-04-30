@@ -87,6 +87,7 @@ git clone https://github.com/photonstorm/phaser-examples.git
 #__Phaser_Boilerplate__
 git clone https://github.com/goldfire/phaser-boilerplate.git
 cd phaser-boilerplate
+npm i
 npm i tern-phaser
 
 echo -Install Phaser done-
