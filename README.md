@@ -18,7 +18,6 @@ chmod 700 install-gdev.sh
 ```
 
 - 開始すると、すぐに Lubuntu の管理者パスワードの入力が要求されるので入力してください。
-- 途中で「ソフトウェアパッケージをインストールしますか？」と表示されたら、[Y]キーを押して[Enter]キーを押します
 
 # ボイラープレート
 PhaserをWebpackでビルドするパッケージ[Phaser Webpack Loader](https://github.com/goldfire/phaser-webpack-loader)を組み込みます。
