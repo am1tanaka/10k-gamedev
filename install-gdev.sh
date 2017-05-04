@@ -41,7 +41,7 @@ sudo apt install gdebi -y
 
 echo --Install Atom--
 wget https://github.com/atom/atom/releases/download/v1.16.0/atom-amd64.deb
-sudo gdebi atom-amd64.deb
+echo y | sudo gdebi atom-amd64.deb
 rm -f ./atom-amd64.deb
 
 ## install package
