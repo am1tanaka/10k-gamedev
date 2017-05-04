@@ -83,6 +83,9 @@ git clone https://github.com/photonstorm/phaser-ce.git phaser
 
 #__Phaser_Examples__
 git clone https://github.com/photonstorm/phaser-examples.git
+cd phaser-examples
+npm i
+cd ..
 
 #__Phaser_Boilerplate__
 git clone https://github.com/goldfire/phaser-boilerplate.git
