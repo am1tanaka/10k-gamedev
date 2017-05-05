@@ -31,7 +31,6 @@ sudo apt-get purge -y nodejs npm
 
 echo -Install Node done-
 
-
 #__ATOM__
 echo -Install Atom-
 
@@ -98,6 +97,14 @@ echo -Install Phaser done-
 cd ~/phaser
 wget https://raw.githubusercontent.com/am1tanaka/10k-gamedev/master/phaser-new.sh
 chmod 700 phaser-new.sh
+
+#__PHP__
+echo -Install PHP7-
+
+echo y | sudo apt install php7.0-cli
+sudo apt update
+
+echo -Install PHP7 done-
 
 cd ~
 
