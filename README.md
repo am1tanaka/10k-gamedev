@@ -23,19 +23,18 @@ chmod 700 install-gdev.sh
 Phaserのサンプルはインストール済みです。LXTerminalを起動して、以下を実行して、ローカルサーバーを起動します。
 
 ```
-cd ~/phaser/phaser-examples
-grunt connect
+cd ~/phaser/phaser-examples/examples
+php -S 0.0.0.0:8000
 ```
 
-サーバーが起動したら、LXTerminalは待機状態になります。
+サーバーが起動したら、LXTerminalは待機状態になります。Webブラウザーを開いて、 http://0.0.0.0:8000/sideview.html を開きます。画面の左にサンプルの一覧が表示されます。サンプルは800以上もあるので、下にスクロールさせてリストを見てみましょう。動かしてみたいサンプルをクリックすると、画面の右で実行されます。
 
-
+一部、インターネットが繋がっていないと動かないサンプルがあるようですが、多くのサンプルはオフラインで見ることができます。色々と試してください。
 
 ## サーバーを停止する
 サーバーを起動していた LXTerminal に切り替えて、[Ctrl]+[C]キーを押します。以下のようにプロンプトが表示されたらサーバーが停止しましたので、不要であれば LXTerminal を閉じて構いません。
 
-
-# ボイラープレート
+# ボイラープレート(これはシェルでスクリプトを作成中)
 PhaserをWebpackでビルドするパッケージ[Phaser Webpack Loader](https://github.com/goldfire/phaser-webpack-loader)を組み込みます。
 ひな型に丁度良いボイラープレートがあるので、これを利用します。
 
