@@ -19,6 +19,22 @@ chmod 700 install-gdev.sh
 
 - 開始すると、すぐに Lubuntu の管理者パスワードの入力が要求されるので入力してください。
 
+# Phaserのサンプルを動かす
+Phaserのサンプルはインストール済みです。LXTerminalを起動して、以下を実行して、ローカルサーバーを起動します。
+
+```
+cd ~/phaser/phaser-examples
+grunt connect
+```
+
+サーバーが起動したら、LXTerminalは待機状態になります。
+
+
+
+## サーバーを停止する
+サーバーを起動していた LXTerminal に切り替えて、[Ctrl]+[C]キーを押します。以下のようにプロンプトが表示されたらサーバーが停止しましたので、不要であれば LXTerminal を閉じて構いません。
+
+
 # ボイラープレート
 PhaserをWebpackでビルドするパッケージ[Phaser Webpack Loader](https://github.com/goldfire/phaser-webpack-loader)を組み込みます。
 ひな型に丁度良いボイラープレートがあるので、これを利用します。
