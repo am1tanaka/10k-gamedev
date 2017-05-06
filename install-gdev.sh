@@ -84,6 +84,7 @@ git clone https://github.com/photonstorm/phaser-ce.git phaser
 git clone https://github.com/photonstorm/phaser-examples.git
 cd phaser-examples
 npm i
+grunt
 cd ..
 
 #__Phaser_Boilerplate__
