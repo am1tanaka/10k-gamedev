@@ -34,6 +34,13 @@ php -S 0.0.0.0:8000
 ## サーバーを停止する
 サーバーを起動していた LXTerminal に切り替えて、[Ctrl]+[C]キーを押します。以下のようにプロンプトが表示されたらサーバーが停止しましたので、不要であれば LXTerminal を閉じて構いません。
 
+# 自分のプロジェクトを作成する
+Phaserで開発を始めるスタート地点として、[Phaser Webpack Loader](https://github.com/goldfire/phaser-webpack-loader)というパッケージを利用します。これを複製したものを改造していきましょう。
+
+複製するためのスクリプトは準備済みですので、
+
+
+
 # ボイラープレート(これはシェルでスクリプトを作成中)
 PhaserをWebpackでビルドするパッケージ[Phaser Webpack Loader](https://github.com/goldfire/phaser-webpack-loader)を組み込みます。
 ひな型に丁度良いボイラープレートがあるので、これを利用します。
@@ -68,4 +75,6 @@ npm run dev
 - 左右キーで旋回、上下キーで加速、減速
 - どれだけ長く生きられるか
 - BGMと効果音の実装
+
+
 
