@@ -9,6 +9,7 @@ do
 done
 
 # copy base folder
+echo プロジェクトの作成を開始します。しばらくお待ちください。
 cp -r phaser-boilerplate $proname
 
 # change new project folder
@@ -30,4 +31,6 @@ echo '{
   }
 }
 ' > .tern-project
+
+echo プロジェクトフォルダーを作成しました。
 
