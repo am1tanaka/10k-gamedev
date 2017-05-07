@@ -2,7 +2,11 @@
 cd ~/phaser
 
 # input project name
-read -p "プロジェクト名を入力してください:" proname
+proname=$1
+while [ ${#proname} = 0 ]
+do
+  read -p "作成するプロジェクト名を半角英数で入力してください:" proname
+done
 
 # copy base folder
 cp -r phaser-boilderplate $proname
