@@ -31,7 +31,3 @@ echo '{
 }
 ' > .tern-project
 
-
-# boot atom
-atom .
-
