@@ -83,5 +83,10 @@ npm i tern-phaser
 - どれだけ長く生きられるか
 - BGMと効果音の実装
 
+# install.shの短縮
+https://goo.gl/SZ8WXk
+
+これをwgetでダウンロードするには？
+
 
 
