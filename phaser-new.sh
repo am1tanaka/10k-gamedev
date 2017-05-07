@@ -9,7 +9,7 @@ do
 done
 
 # copy base folder
-cp -r phaser-boilderplate $proname
+cp -r phaser-boilerplate $proname
 
 # change new project folder
 cd $proname
