@@ -92,6 +92,8 @@ git clone https://github.com/goldfire/phaser-boilerplate.git
 cd phaser-boilerplate
 npm i
 npm i tern-phaser
+npm run dev:server
+npm run dev:phaser
 echo -Install Phaser done-
 
 #__MAKE_NEW_PHASER_PROJECT_FILE__
