@@ -34,10 +34,25 @@ php -S 0.0.0.0:8000
 ## サーバーを停止する
 サーバーを起動していた LXTerminal に切り替えて、[Ctrl]+[C]キーを押します。以下のようにプロンプトが表示されたらサーバーが停止しましたので、不要であれば LXTerminal を閉じて構いません。
 
-# 自分のプロジェクトを作成する
+# プロジェクトを作成する
 Phaserで開発を始めるスタート地点として、[Phaser Webpack Loader](https://github.com/goldfire/phaser-webpack-loader)というパッケージを利用します。これを複製したものを改造していきましょう。
 
 複製するためのスクリプトは準備済みですので、
+
+## 開発を始める
+開発を始める時の手順です。
+
+```
+cd ~/phaser/プロジェクトフォルダー名
+atom .
+npm run dev:serve
+```
+
+以上でビルドが実行されて、待っていると自動的にブラウザーが起動して、ライブプレビューが始まります。
+
+## 変更
+最初はWEBGLが有効なので、AUTOに変更します。
+
 
 
 
@@ -55,15 +70,7 @@ npm i
 npm i tern-phaser
 ```
 
-## 開発ビルド
-```
-npm run dev
-```
 
-以上でビルドが実行されて、待っていると自動的にブラウザーが起動して、ライブプレビューが始まります。
-
-## 改変
-最初はWEBGLが有効なので、AUTOに変更します。
 
 ## 選択肢
 似たもので https://github.com/mattcolman/phaser-manifest-loader があったが、圧縮テクスチャへの対応、Retina対応、サンプルプログラムの出来から、phaser-webpack-loaderを採用しました。
