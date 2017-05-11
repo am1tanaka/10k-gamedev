@@ -87,6 +87,14 @@ npm i
 grunt
 cd ..
 
+#__Phaser_Template_Simple__
+git clone https://github.com/am1tanaka/phaser-template-simple.git
+cd phaser-template-simple
+npm i
+chmod 700 fetch.sh
+./fetch.sh
+rm fetch.sh
+
 #__Phaser_Boilerplate__
 git clone https://github.com/goldfire/phaser-boilerplate.git
 cd phaser-boilerplate
