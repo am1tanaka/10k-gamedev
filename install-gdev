@@ -91,9 +91,9 @@ cd ..
 git clone https://github.com/am1tanaka/phaser-template-simple.git
 cd phaser-template-simple
 npm i
-chmod 700 fetch.sh
-./fetch.sh
-rm fetch.sh
+chmod 700 fetch
+./fetch
+rm fetch
 
 #__Phaser_Boilerplate__
 git clone https://github.com/goldfire/phaser-boilerplate.git
@@ -106,8 +106,10 @@ echo -Install Phaser done-
 
 #__MAKE_NEW_PHASER_PROJECT_FILE__
 cd ~/phaser
-wget https://raw.githubusercontent.com/am1tanaka/10k-gamedev/master/phaser-new.sh
-chmod 700 phaser-new.sh
+wget -N --no-check-certificate https://raw.githubusercontent.com/am1tanaka/10k-gamedev/master/phaser-new
+chmod 700 phaser-new
+wget -N --no-check-certificate https://raw.githubusercontent.com/am1tanaka/10k-gamedev/master/phaser-new-smpl
+chmod 700 phaser-new-smpl
 
 #__PHP__
 echo -Install PHP7-
@@ -121,5 +123,5 @@ cd ~
 
 #__FINISH__
 sudo apt autoremove -y
-chmod 600 ~/install-gdev.sh
+chmod 600 ~/install-gdev
 
