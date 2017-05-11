@@ -12,9 +12,9 @@ Lubuntuのインストールが済んで起動したら、以下を実行しま�
 
 ```
 cd ~
-wget -N https://raw.githubusercontent.com/am1tanaka/10k-gamedev/master/install-gdev.sh
-chmod 700 install-gdev.sh
-./install-gdev.sh
+wget -N --no-check-certificate https://raw.githubusercontent.com/am1tanaka/10k-gamedev/master/install-gdev
+chmod 700 install-gdev
+./install-gdev
 ```
 
 - 開始すると、すぐに Lubuntu の管理者パスワードの入力が要求されるので入力してください。
@@ -35,6 +35,59 @@ php -S 0.0.0.0:8000
 サーバーを起動していた LXTerminal に切り替えて、[Ctrl]+[C]キーを押します。以下のようにプロンプトが表示されたらサーバーが停止しましたので、不要であれば LXTerminal を閉じて構いません。
 
 # プロジェクトを作成する
+非常にシンプルなPhaserのプロジェクトを作成して、自分でコーディングができることを確認します。
+
+## プロジェクトの作成方法
+LXTerminal で以下のコマンドを実行することで、新しいプロジェクトフォルダーを作成します。ここでは最初のプロジェクトということで first という名前のプロジェクトを作成します。
+
+```
+cd ~/phaser
+./phaser-new-smpl first
+```
+
+プロジェクトが作成できたら、以下のコマンドで、作成した`first`フォルダーに移動します。
+
+```
+cd first
+```
+
+## プロジェクトを起動する
+作成したプロジェクトの動作をWebブラウザーで確認できるように、サーバーを起動します。
+
+```
+npm run serve
+```
+
+サーバーが起動します。LXTerminalはサーバーに専念するので入力は受け付けなくなります。
+
+Webブラウザーを起動して、 http://0.0.0.0:8000 を開いてください。黒い画面の左上に星が表示されれば成功です。
+
+## プログラムをエディターで開く
+新しいLXTerminalを開くために、先ほどのLXTerminal上で右クリックして、[新しいウィンドウ]をクリックしてください。
+
+これで、新しいLXTerminalが、先ほどと同じフォルダーを開いた状態で起動できます。以下のコマンドを入力して、Atomエディターを起動します。
+
+```
+atom .
+```
+
+しばらく待つと Atom エディターが、 first フォルダーを開いた状態で開きます。
+
+## プログラムを編集する
+プログラムを書き換えて動きを確認してみましょう。Atomの左の一覧から、`_site`>`src` フォルダーを開いてください。以下の5つのプログラムが確認できます。
+
+- boot.js
+- create.js
+- preload.js
+- render.js
+- update.js
+
+
+
+
+
+
+
 Phaserで開発を始めるスタート地点として、[Phaser Webpack Loader](https://github.com/goldfire/phaser-webpack-loader)というパッケージを利用します。これを複製したものを改造していきましょう。
 
 複製するためのスクリプトは準備済みですので、
