@@ -73,6 +73,13 @@ sudo npm install -g grunt-cli
 echo -Install Grunt done-
 
 
+#__http_server__
+echo -Install http-server-
+
+sudo npm i -g http-server
+
+echo -Install http-server done-
+
 #__Phaser__
 echo -Install Phaser-
 
