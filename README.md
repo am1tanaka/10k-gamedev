@@ -97,7 +97,12 @@ atom .
 6. 画面が更新されたら、4から繰り返し
 
 
+ここまで。
 
+----
+
+
+# 以下はメモ
 
 
 Phaserで開発を始めるスタート地点として、[Phaser Webpack Loader](https://github.com/goldfire/phaser-webpack-loader)というパッケージを利用します。これを複製したものを改造していきましょう。
