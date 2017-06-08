@@ -92,9 +92,9 @@ git clone https://github.com/photonstorm/phaser-examples.git
 cd phaser-examples
 npm i
 grunt
-cd ..
 
 #__Phaser_Template_Simple__
+cd ~/phaser
 git clone https://github.com/am1tanaka/phaser-template-simple.git
 cd phaser-template-simple
 npm i
@@ -103,6 +103,7 @@ chmod 700 fetch
 rm fetch
 
 #__Phaser_Boilerplate__
+cd ~/phaser
 git clone https://github.com/goldfire/phaser-boilerplate.git
 cd phaser-boilerplate
 npm i
