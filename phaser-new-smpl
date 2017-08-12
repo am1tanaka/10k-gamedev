@@ -18,8 +18,7 @@ cd $proname
 echo '{
   "ecmaVersion": 6,
   "libs": [
-    "browser",
-    "jquery"
+    "browser"
   ],
   "loadEagerly": [],
   "dontLoad": [
@@ -27,7 +26,10 @@ echo '{
   ],
   "plugins": {
     "phaser": {},
-    "doc_comment": true
+    "doc_comment": {
+      "fullDocs": true,
+      "strong": false
+    }
   }
 }
 ' > .tern-project
