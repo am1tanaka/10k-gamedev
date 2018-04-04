@@ -79,3 +79,5 @@ echo -Install http-server done-
 sudo apt autoremove -y
 chmod 600 ~/install-gdev
 
+echo "インストール完了しました。一度ターミナルを閉じてから、再度LXTerminalを起動し直してください。"
+
