@@ -30,6 +30,16 @@ sudo apt-get purge -y nodejs npm
 
 echo -Install Node done-
 
+#__yarn__
+echo -Install yarn-
+
+wget -q -O - https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+
+sudo apt-get update && sudo apt-get install -y yarn
+
+echo -Install yarn done- 
+
 #__ATOM__
 echo -Install Atom-
 
@@ -60,68 +70,11 @@ echo -Install Google Chrome done-
 #__http_server__
 echo -Install http-server-
 
-sudo npm i -g http-server
+yarn global add http-server
+echo 'PATH=$PATH:$(yarn global bin) >> ~/.bashrc
+source ~/.bashrc
 
 echo -Install http-server done-
-
-# --------------------
-
-#__Grunt__
-echo -Install Grunt-
-
-sudo npm install -g grunt-cli
-
-echo -Install Grunt done-
-
-
-#__Phaser__
-echo -Install Phaser-
-
-mkdir phaser
-cd phaser
-git clone https://github.com/photonstorm/phaser-ce.git phaser
-
-#__Phaser_Examples__
-git clone https://github.com/photonstorm/phaser-examples.git
-cd phaser-examples
-npm i
-grunt
-
-#__Phaser_Template_Simple__
-cd ~/phaser
-git clone https://github.com/am1tanaka/phaser-template-simple.git
-cd phaser-template-simple
-npm i
-chmod 700 fetch
-./fetch
-rm fetch
-
-#__Phaser_Boilerplate__
-cd ~/phaser
-git clone https://github.com/goldfire/phaser-boilerplate.git
-cd phaser-boilerplate
-npm i
-npm i tern-phaser
-npm run dev:server
-npm run dev:phaser
-echo -Install Phaser done-
-
-#__MAKE_NEW_PHASER_PROJECT_FILE__
-cd ~/phaser
-wget -N --no-check-certificate https://raw.githubusercontent.com/am1tanaka/10k-gamedev/master/phaser-new
-chmod 700 phaser-new
-wget -N --no-check-certificate https://raw.githubusercontent.com/am1tanaka/10k-gamedev/master/phaser-new-smpl
-chmod 700 phaser-new-smpl
-
-#__PHP__
-echo -Install PHP7-
-
-echo y | sudo apt install php7.0-cli
-sudo apt update
-
-echo -Install PHP7 done-
-
-cd ~
 
 #__FINISH__
 sudo apt autoremove -y
