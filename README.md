@@ -12,7 +12,7 @@ Lubuntuのインストールが済んで起動したら、以下を実行しま�
 
 ```
 cd ~
-wget -N --no-check-certificate https://raw.githubusercontent.com/am1tanaka/10k-gamedev/master/install-gdev
+wget -N --no-check-certificate https://raw.githubusercontent.com/am1tanaka/10k-gamedev/v3/install-gdev
 chmod 700 install-gdev
 ./install-gdev
 ```
