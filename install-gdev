@@ -4,7 +4,7 @@
 
 #
 # 10k game development installer
-# @copyright 2017 YuTanaka@AmuseOne
+# @copyright 2017-2018 YuTanaka@AmuseOne
 # @license MIT
 #
 
@@ -12,7 +12,6 @@ cd ~
 
 # __UPDATE_APTGET__
 sudo apt-get update
-
 
 #__NODE__
 # 参考URL http://qiita.com/seibe/items/36cef7df85fe2cefa3ea
@@ -34,22 +33,16 @@ echo -Install Node done-
 #__ATOM__
 echo -Install Atom-
 
-echo --Install gdebi--
-# http://unskilled.site/%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%81%A7deb%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B%E3%81%A8%E3%81%8D/
-sudo apt install gdebi -y
+wget -q -O - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
+sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
+sudo apt-get update
 
-echo --Install Atom--
-wget https://github.com/atom/atom/releases/download/v1.16.0/atom-amd64.deb
-echo y | sudo gdebi atom-amd64.deb
-rm -f ./atom-amd64.deb
+sudo apt-get install atom -y
 
 ## install package
-apm install atom-html-preview
-apm install emmet
-apm install atom-ternjs
+apm install atom-html-preview emmet atom-ternjs
 
 echo -Install Atom done-
-
 
 #__Chrome__
 echo -Install Google Chrome-
@@ -64,6 +57,14 @@ sudo apt-get install -f -y
 
 echo -Install Google Chrome done-
 
+#__http_server__
+echo -Install http-server-
+
+sudo npm i -g http-server
+
+echo -Install http-server done-
+
+# --------------------
 
 #__Grunt__
 echo -Install Grunt-
@@ -72,13 +73,6 @@ sudo npm install -g grunt-cli
 
 echo -Install Grunt done-
 
-
-#__http_server__
-echo -Install http-server-
-
-sudo npm i -g http-server
-
-echo -Install http-server done-
 
 #__Phaser__
 echo -Install Phaser-
