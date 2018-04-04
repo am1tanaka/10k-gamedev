@@ -72,7 +72,6 @@ echo -Install http-server-
 
 yarn global add http-server
 echo 'PATH=$PATH:$(yarn global bin)' >> ~/.bashrc
-source ~/.bashrc
 
 echo -Install http-server done-
 
