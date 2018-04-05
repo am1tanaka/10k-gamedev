@@ -8,9 +8,34 @@
 # @license MIT
 #
 
-echo 'Acquire::Queue-Mode "access";' | sudo tee /etc/apt/apt.conf.d/75download
+########
+
+now=$(date "+%Y-%m-%d %H:%M:%S")
+
+RED="\e[31;40;1m"
+COLEND="\e[m"
+
+function error {
+  echo "${now} $@" |& tee -a install-gdev.log
+}
+
+function abort
+{
+  echo -e "${now} ${RED}$@:エラーが発生しました。ネットワーク環境を確認して、再度実行してみてください。何度やってもこのエラーが出続ける場合は、このフォルダー内のinstall-gdev.logを添付して開発者に連絡してください。${COLEND}" |& tee -a install-gdev.log
+  exit 1
+}
+
+########
 
 cd ~
+
+echo "START ${now}" |& tee install-gdev.log
+
+# __QUEUED APT__
+
+echo 'Acquire::Queue-Mode "access";' | sudo tee /etc/apt/apt.conf.d/75download
+
+# __QUEUED APT_DONE_
 
 # __UPDATE_APTGET__
 sudo apt-get update
@@ -18,68 +43,104 @@ sudo apt-get update
 #__NODE__
 # 参考URL http://qiita.com/seibe/items/36cef7df85fe2cefa3ea
 
-echo -Install Node-
+n -v &> /dev/null
+if [ $? ] ; then
 
-sudo apt-get install -y nodejs npm
+echo "-Install Node-" |& tee -a install-gdev.log
+
+node -v &> /dev/null
+if [ $? ] ; then
+sudo apt-get install -y nodejs || abort 'install node'
+fi
+
+npm -v &> /dev/null
+if [ $? ] ; then
+sudo apt-get install -y npm || abort 'install npm'
+fi
 
 sudo npm cache clean
-sudo npm install n -g
+sudo npm install n -g || abort 'install n'
 
-sudo n stable
+sudo n stable || abort 'n stable'
 sudo ln -sf /usr/local/bin/node /usr/bin/node
 
 sudo apt-get purge -y nodejs npm
 
 echo -Install Node done-
 
-#__yarn__
-echo -Install yarn-
+fi
 
-wget -q -O - https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+#__yarn__
+
+yarn -v &> /dev/null
+if [ $? ] ; then
+
+echo "-Install yarn-" |& tee -a install-gdev.log
+
+wget -q -O - https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - || abort 'wget yarn pubkey.gpg'
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 
-sudo apt-get update && sudo apt-get install -y yarn
+sudo apt-get update && sudo apt-get install -y yarn || abort 'install yarn'
 
 echo -Install yarn done- 
 
+fi
+
 #__ATOM__
-echo -Install Atom-
 
-wget -q --no-check-certificate -O - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
+atom -v &> /dev/null
+if [ $? ] ; then
+
+echo "-Install Atom-" |& tee -a install-gdev.log
+
+wget -q --no-check-certificate -O - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add - || abort 'wget atom gpgkey'
 echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" | sudo tee /etc/apt/sources.list.d/atom.list
-sudo apt-get update
+sudo apt-get update || abort 'atom apt-get update'
 
-sudo apt-get install atom -y
+sudo apt-get install atom -y || abort 'install atom'
 
 ## install package
-apm install atom-html-preview emmet atom-ternjs
+apm install atom-html-preview emmet atom-ternjs || abort 'atom packages'
 
 echo -Install Atom done-
 
+fi
+
 #__Chrome__
-echo -Install Google Chrome-
 
-sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+chrome -v &> /dev/null
+if [ $? ] ; then
+
+echo "-Install Google Chrome-" |& tee -a install-gdev.log
+
+sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - || abort 'wget chrome pubkey'
 sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-sudo apt-get update
+sudo apt-get update || abort 'chrome apt-get update'
 
-sudo apt-get install google-chrome-stable -y
+sudo apt-get install google-chrome-stable -y || abort 'install chrome'
 
-sudo apt-get install -f -y
+sudo apt-get install -f -y || abort 'apt-get install -f -y'
 
 echo -Install Google Chrome done-
 
-#__http_server__
-echo -Install http-server-
+fi
 
-yarn global add http-server
+#__http_server__
+
+http-server -h &> /dev/null
+if [ $? ] ; then
+
+echo "-Install http-server-" |& tee -a install-gdev.log
+
+yarn global add http-server || abort 'install http-server'
 echo 'PATH=$PATH:$(yarn global bin)' >> ~/.bashrc
 
 echo -Install http-server done-
+
+fi
 
 #__FINISH__
 sudo apt autoremove -y
 chmod 600 ~/install-gdev
 
-echo "インストール完了しました。一度ターミナルを閉じてから、再度LXTerminalを起動し直してください。"
-
+echo -e "\e[32;40;1mインストール完了しました。一度ターミナルを閉じてから、再度LXTerminalを起動し直してください。${COLEND}"
