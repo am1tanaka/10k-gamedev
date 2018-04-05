@@ -42,6 +42,9 @@ echo "START ${now}" |& tee install-gdev.log
 
 # __QUEUED APT__
 
+if [ -f /etc/apt/apt.conf.d/75download ] ; then
+  sudo mv -u /etc/apt/apt.conf.d/75download /etc/apt.conf.d/75download.bk
+fi
 echo 'Acquire::Queue-Mode "access";' | sudo tee /etc/apt/apt.conf.d/75download
 
 # __QUEUED APT_DONE_
