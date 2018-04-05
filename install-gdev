@@ -19,9 +19,18 @@ function error {
   echo "${now} $@" |& tee -a install-gdev.log
 }
 
+function fin
+{
+  sudo rm -f /etc/apt/apt.conf.d/75download
+  if [ -f /etc/apt/apt.conf.d/75download.bk ] ; then
+    sudo mv /etc/apt/apt.conf.d/75download.bk /etc/apt/apt.conf.d/75download
+  fi
+}
+
 function abort
 {
   echo -e "${now} ${RED}$@:エラーが発生しました。ネットワーク環境を確認して、再度実行してみてください。何度やってもこのエラーが出続ける場合は、このフォルダー内のinstall-gdev.logを添付して開発者に連絡してください。${COLEND}" |& tee -a install-gdev.log
+  $(fin)
   exit 1
 }
 
@@ -142,5 +151,6 @@ fi
 #__FINISH__
 sudo apt autoremove -y
 chmod 600 ~/install-gdev
+fin
 
 echo -e "\e[32;40;1mインストール完了しました。一度ターミナルを閉じてから、再度LXTerminalを起動し直してください。${COLEND}"
