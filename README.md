@@ -40,7 +40,15 @@ W: ターゲット Packages (???/???/???) は /etc/apt/sources.list.d/google-chr
 - [Ctrl]+[S]キーで保存
 - Atomを閉じる
 
-以上で直ると思います。
+## まだ失敗する場合
+タイムアウトをしている可能性があります。LXTerminalで以下を実行してください。
+
+```
+echo 'Acquire::Queue-Mode "access";' | sudo tee /etc/apt/apt.conf.d/75download
+```
+
+以上で、Chrome関連以外の不具合は解消されると思います。Chromeについては、一度インストールすればChrome自身がアップデートを行うので、apt-getで更新できなくてもとりあえず問題ありません。完全な解決方法がわかったら追記します。
+
 
 # Phaserのサンプルを動かす
 Phaserのサンプルはインストール済みです。LXTerminalを起動して、以下を実行して、ローカルサーバーを起動します。
