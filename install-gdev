@@ -150,6 +150,7 @@ fi
 
 #__FINISH__
 sudo apt autoremove -y
+sudo apt autoclean
 chmod 600 ~/install-gdev
 fin
 
