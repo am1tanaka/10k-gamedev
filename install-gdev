@@ -43,18 +43,18 @@ sudo apt-get update
 #__NODE__
 # 参考URL http://qiita.com/seibe/items/36cef7df85fe2cefa3ea
 
-n -v &> /dev/null
-if [ $? ] ; then
+n --version &> /dev/null
+if [ $? -ne 0 ] ; then
 
 echo "-Install Node-" |& tee -a install-gdev.log
 
 node -v &> /dev/null
-if [ $? ] ; then
+if [ $? -ne 0 ] ; then
 sudo apt-get install -y nodejs || abort 'install node'
 fi
 
 npm -v &> /dev/null
-if [ $? ] ; then
+if [ $? -ne 0 ] ; then
 sudo apt-get install -y npm || abort 'install npm'
 fi
 
@@ -73,7 +73,7 @@ fi
 #__yarn__
 
 yarn -v &> /dev/null
-if [ $? ] ; then
+if [ $? -ne 0 ] ; then
 
 echo "-Install yarn-" |& tee -a install-gdev.log
 
@@ -89,7 +89,7 @@ fi
 #__ATOM__
 
 atom -v &> /dev/null
-if [ $? ] ; then
+if [ $? -ne 0 ] ; then
 
 echo "-Install Atom-" |& tee -a install-gdev.log
 
@@ -109,7 +109,7 @@ fi
 #__Chrome__
 
 chrome -v &> /dev/null
-if [ $? ] ; then
+if [ $? -ne 0 ] ; then
 
 echo "-Install Google Chrome-" |& tee -a install-gdev.log
 
@@ -128,7 +128,7 @@ fi
 #__http_server__
 
 http-server -h &> /dev/null
-if [ $? ] ; then
+if [ $? -ne 0 ] ; then
 
 echo "-Install http-server-" |& tee -a install-gdev.log
 
