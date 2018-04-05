@@ -8,7 +8,7 @@
 # @license MIT
 #
 
-echo 'Acquire::Queue-Mode "access";' > sudo tee /etc/apt/apt.conf.d/75download
+echo 'Acquire::Queue-Mode "access";' | sudo tee /etc/apt/apt.conf.d/75download
 
 cd ~
 
