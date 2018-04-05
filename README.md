@@ -17,7 +17,30 @@ chmod 700 install-gdev
 ./install-gdev
 ```
 
-- 開始すると、すぐに Lubuntu の管理者パスワードの入力が要求されるので入力してください。
+- 開始すると、すぐに Lubuntu の管理者パスワードの入力が要求されるので入力してください
+
+# apt-get updateがで警告が表示される
+Chromeの設定によって、インストール後、以下のような警告が大量に表示されるようになる場合があります。
+
+```
+W: ターゲット Packages (???/???/???) は /etc/apt/sources.list.d/google-chrome.list:3 と /etc/apt/sources.list.d/google.list:1 で複数回設定されています
+```
+
+これを修正する場合は、以下のようにします。
+
+- LXTerminalを起動
+- `sudo atom /etc/apt/sources.list.d/google-chrome.list`を実行して、設定ファイルをAtomで開く
+- パスワードの要求があったら入力して[Enter]キー
+- 以下の通り、設定の行頭に`#`を入力してコメントアウト
+
+```
+# deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
+```
+
+- [Ctrl]+[S]キーで保存
+- Atomを閉じる
+
+以上で直ると思います。
 
 # Phaserのサンプルを動かす
 Phaserのサンプルはインストール済みです。LXTerminalを起動して、以下を実行して、ローカルサーバーを起動します。
