@@ -117,7 +117,7 @@ fi
 
 #__Chrome__
 
-chrome -v &> /dev/null
+/usr/bin/google-chrome-stable --version &> /dev/null
 if [ $? -ne 0 ] ; then
 
 echo "-Install Google Chrome-" |& tee -a install-gdev.log
