@@ -4,132 +4,159 @@
 
 #
 # 10k game development installer
-# @copyright 2017 YuTanaka@AmuseOne
+# @copyright 2017-2018 YuTanaka@AmuseOne
 # @license MIT
 #
 
+########
+
+now=$(date "+%Y-%m-%d %H:%M:%S")
+
+RED="\e[31;40;1m"
+COLEND="\e[m"
+
+function error {
+  echo "${now} $@" |& tee -a install-gdev.log
+}
+
+function fin
+{
+  sudo rm -f /etc/apt/apt.conf.d/75download
+  if [ -f /etc/apt/apt.conf.d/75download.bk ] ; then
+    sudo mv /etc/apt/apt.conf.d/75download.bk /etc/apt/apt.conf.d/75download
+  fi
+}
+
+function abort
+{
+  echo -e "${now} ${RED}$@:エラーが発生しました。ネットワーク環境を確認して、再度実行してみてください。何度やってもこのエラーが出続ける場合は、このフォルダー内のinstall-gdev.logを添付して開発者に連絡してください。${COLEND}" |& tee -a install-gdev.log
+  $(fin)
+  exit 1
+}
+
+########
+
 cd ~
+
+echo "START ${now}" |& tee install-gdev.log
+
+# __QUEUED APT__
+
+if [ -f /etc/apt/apt.conf.d/75download ] ; then
+  sudo mv -u /etc/apt/apt.conf.d/75download /etc/apt.conf.d/75download.bk
+fi
+echo 'Acquire::Queue-Mode "access";' | sudo tee /etc/apt/apt.conf.d/75download
+
+# __QUEUED APT_DONE_
 
 # __UPDATE_APTGET__
 sudo apt-get update
 
-
 #__NODE__
 # 参考URL http://qiita.com/seibe/items/36cef7df85fe2cefa3ea
 
-echo -Install Node-
+n --version &> /dev/null
+if [ $? -ne 0 ] ; then
 
-sudo apt-get install -y nodejs npm
+echo "-Install Node-" |& tee -a install-gdev.log
+
+node -v &> /dev/null
+if [ $? -ne 0 ] ; then
+sudo apt-get install -y nodejs || abort 'install node'
+fi
+
+npm -v &> /dev/null
+if [ $? -ne 0 ] ; then
+sudo apt-get install -y npm || abort 'install npm'
+fi
 
 sudo npm cache clean
-sudo npm install n -g
+sudo npm install n -g || abort 'install n'
 
-sudo n stable
+sudo n stable || abort 'n stable'
 sudo ln -sf /usr/local/bin/node /usr/bin/node
 
 sudo apt-get purge -y nodejs npm
 
 echo -Install Node done-
 
+fi
+
+#__yarn__
+
+yarn -v &> /dev/null
+if [ $? -ne 0 ] ; then
+
+echo "-Install yarn-" |& tee -a install-gdev.log
+
+wget -q -O - https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - || abort 'wget yarn pubkey.gpg'
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+
+sudo apt-get update && sudo apt-get install -y yarn || abort 'install yarn'
+
+echo -Install yarn done- 
+
+fi
+
 #__ATOM__
-echo -Install Atom-
 
-echo --Install gdebi--
-# http://unskilled.site/%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%81%A7deb%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B%E3%81%A8%E3%81%8D/
-sudo apt install gdebi -y
+atom -v &> /dev/null
+if [ $? -ne 0 ] ; then
 
-echo --Install Atom--
-wget https://github.com/atom/atom/releases/download/v1.16.0/atom-amd64.deb
-echo y | sudo gdebi atom-amd64.deb
-rm -f ./atom-amd64.deb
+echo "-Install Atom-" |& tee -a install-gdev.log
+
+wget -q --no-check-certificate -O - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add - || abort 'wget atom gpgkey'
+echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" | sudo tee /etc/apt/sources.list.d/atom.list
+sudo apt-get update || abort 'atom apt-get update'
+
+sudo apt-get install atom -y || abort 'install atom'
 
 ## install package
-apm install atom-html-preview
-apm install emmet
-apm install atom-ternjs
+apm install atom-html-preview emmet atom-ternjs || abort 'atom packages'
+
+sudo chown -R $(whoami) ~/.atom
 
 echo -Install Atom done-
 
+fi
 
 #__Chrome__
-echo -Install Google Chrome-
 
-sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+/usr/bin/google-chrome-stable --version &> /dev/null
+if [ $? -ne 0 ] ; then
+
+echo "-Install Google Chrome-" |& tee -a install-gdev.log
+
+sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - || abort 'wget chrome pubkey'
 sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-sudo apt-get update
+sudo apt-get update || abort 'chrome apt-get update'
 
-sudo apt-get install google-chrome-stable -y
+sudo apt-get install google-chrome-stable -y || abort 'install chrome'
 
-sudo apt-get install -f -y
+sudo apt-get install -f -y || abort 'apt-get install -f -y'
 
 echo -Install Google Chrome done-
 
-
-#__Grunt__
-echo -Install Grunt-
-
-sudo npm install -g grunt-cli
-
-echo -Install Grunt done-
-
+fi
 
 #__http_server__
-echo -Install http-server-
 
-sudo npm i -g http-server
+http-server -h &> /dev/null
+if [ $? -ne 0 ] ; then
+
+echo "-Install http-server-" |& tee -a install-gdev.log
+
+yarn global add http-server || abort 'install http-server'
+echo 'PATH=$PATH:$(yarn global bin)' >> ~/.bashrc
 
 echo -Install http-server done-
 
-#__Phaser__
-echo -Install Phaser-
-
-mkdir phaser
-cd phaser
-git clone https://github.com/photonstorm/phaser-ce.git phaser
-
-#__Phaser_Examples__
-git clone https://github.com/photonstorm/phaser-examples.git
-cd phaser-examples
-npm i
-grunt
-
-#__Phaser_Template_Simple__
-cd ~/phaser
-git clone https://github.com/am1tanaka/phaser-template-simple.git
-cd phaser-template-simple
-npm i
-chmod 700 fetch
-./fetch
-rm fetch
-
-#__Phaser_Boilerplate__
-cd ~/phaser
-git clone https://github.com/goldfire/phaser-boilerplate.git
-cd phaser-boilerplate
-npm i
-npm i tern-phaser
-npm run dev:server
-npm run dev:phaser
-echo -Install Phaser done-
-
-#__MAKE_NEW_PHASER_PROJECT_FILE__
-cd ~/phaser
-wget -N --no-check-certificate https://raw.githubusercontent.com/am1tanaka/10k-gamedev/master/phaser-new
-chmod 700 phaser-new
-wget -N --no-check-certificate https://raw.githubusercontent.com/am1tanaka/10k-gamedev/master/phaser-new-smpl
-chmod 700 phaser-new-smpl
-
-#__PHP__
-echo -Install PHP7-
-
-echo y | sudo apt install php7.0-cli
-sudo apt update
-
-echo -Install PHP7 done-
-
-cd ~
+fi
 
 #__FINISH__
 sudo apt autoremove -y
+sudo apt autoclean
 chmod 600 ~/install-gdev
+fin
 
+echo -e "\e[32;40;1mインストール完了しました。一度ターミナルを閉じてから、再度LXTerminalを起動し直してください。${COLEND}"

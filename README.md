@@ -1,5 +1,5 @@
 # 10k-gamedev(WIP 作業中)
-1万円(+インターネット)ではじめるゲーム開発用リポジトリー。
+1万円(+インターネット)ではじめるゲーム開発用リポジトリー。Phaser3用です。
 
 まだ作業中です。
 
@@ -161,7 +161,7 @@ npm run dev:serve
 PhaserをWebpackでビルドするパッケージ[Phaser Webpack Loader](https://github.com/goldfire/phaser-webpack-loader)を組み込みます。
 ひな型に丁度良いボイラープレートがあるので、これを利用します。
 
-- https://github.com/goldfire/phaser-boilerplate 
+- https://github.com/goldfire/phaser-boilerplate
 
 ```
 cd ~/phaser
@@ -188,6 +188,3 @@ npm i tern-phaser
 https://goo.gl/SZ8WXk
 
 これをwgetでダウンロードするには？
-
-
-
