@@ -80,6 +80,14 @@ sudo apt-get purge -y nodejs npm
 
 echo -Install Node done-
 
+else
+
+ecoh -n and Node update-
+
+n stable
+
+ecoh -n and Node update done-
+
 fi
 
 #__yarn__
@@ -160,3 +168,4 @@ chmod 600 ~/install-gdev
 fin
 
 echo -e "\e[32;40;1mインストール完了しました。一度ターミナルを閉じてから、再度LXTerminalを起動し直してください。${COLEND}"
+echo stable以外のnodeが不要な場合は、 n prune を実行してください。
